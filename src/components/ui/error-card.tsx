@@ -11,7 +11,7 @@ export function ErrorCard({ error }: { error: Error | null | string }) {
 			<div className="card">
 				<h1>{title}</h1>
 				<p>{description}</p>
-				<Link to={clientRoutes.dashboard}>
+				<Link to={clientRoutes.landing}>
 					<button>{back}</button>
 				</Link>
 			</div>

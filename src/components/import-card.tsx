@@ -1,4 +1,4 @@
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { HoverCard } from "@/components/ui/hover-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { TXT } from "@/lib/txt.namespace";
 import { isObjectWith } from "@/lib/utils";
@@ -99,12 +99,8 @@ export function ImportCard() {
 						name="collectionName"
 					/>
 
-					<HoverCard>
-						<HoverCardTrigger delay={100} className="button sm ghost square">
-							<InfoIcon />
-						</HoverCardTrigger>
-
-						<HoverCardContent>
+					<div className="hidden sm:block">
+						<HoverCard triggerClassName="button sm ghost square " trigger={() => <InfoIcon />}>
 							<div className="card">
 								<header>
 									<p className="text-base font-bold">Example data:</p>
@@ -119,8 +115,8 @@ export function ImportCard() {
 									</code>
 								</pre>
 							</div>
-						</HoverCardContent>
-					</HoverCard>
+						</HoverCard>
+					</div>
 				</header>
 
 				<textarea
@@ -138,6 +134,25 @@ export function ImportCard() {
 						Cancel
 					</button>
 				</footer>
+
+				<div className="block sm:hidden">
+					<div className="card">
+						<header>
+							<p className="text-base font-bold">Example data:</p>
+						</header>
+						<ScrollArea className="h-32">
+							<pre className="p-3 text-xs">
+								<code>
+									{JSON.stringify(
+										[{ word: "hello", forbidden: ["world", "coding", "etc"] }],
+										null,
+										2,
+									)}
+								</code>
+							</pre>
+						</ScrollArea>
+					</div>
+				</div>
 			</div>
 		</form>
 	);
