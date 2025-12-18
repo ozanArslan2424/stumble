@@ -1,4 +1,5 @@
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { TXT } from "@/lib/txt.namespace";
 import { isObjectWith } from "@/lib/utils";
 import { useAppContext } from "@/modules/context/app.context";
@@ -70,9 +71,11 @@ export function ImportCard() {
 				<header>
 					<h3>{collectionQuery.data.name}</h3>
 				</header>
-				<pre className="bg-background text-foreground/90 h-52 overflow-y-auto border p-1.5 text-xs">
-					<code>{value}</code>
-				</pre>
+				<ScrollArea className="h-52">
+					<pre className="bg-background text-foreground/90 p-1.5 text-xs">
+						<code>{value}</code>
+					</pre>
+				</ScrollArea>
 				<footer className="flex flex-col gap-1.5">
 					<button className="sm" type="button" onClick={handleCopy}>
 						Copy Data

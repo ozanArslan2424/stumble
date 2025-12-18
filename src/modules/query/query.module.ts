@@ -1,4 +1,4 @@
-import type { TWithId } from "@/lib/helper.type";
+import type { Help } from "@/lib/help.namespace";
 import type { QueryKey, QueryUpdaterArgs } from "@/modules/query/query.schema";
 import {
 	QueryClient,
@@ -54,7 +54,7 @@ export class QueryModule extends QueryClient {
 		return Promise.all(queryKeys.map((queryKey) => this.invalidateQueries({ queryKey })));
 	}
 
-	updateListData<T extends TWithId>(args: QueryUpdaterArgs<T>) {
+	updateListData<T extends Help.WithId>(args: QueryUpdaterArgs<T>) {
 		const snapshot = this.getQueryData(args.queryKey);
 
 		this.setQueryData<T[]>(args.queryKey, (prev) => {

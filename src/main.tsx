@@ -1,5 +1,4 @@
 import { App } from "./app.tsx";
-import "./modules/language/language.config.ts";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 

@@ -1,7 +1,6 @@
 import { Dialog } from "./dialog";
 import type { ModalState } from "@/hooks/use-modal";
 import { cn, prefixId } from "@/lib/utils";
-import { useLanguage } from "@/modules/language/use-language";
 import type { ComponentProps } from "react";
 
 type ConfirmDialogProps = ModalState & {
@@ -21,8 +20,6 @@ export function ConfirmDialog({
 	id,
 	...dialog
 }: ConfirmDialogProps) {
-	const { t: tCommon } = useLanguage("common");
-
 	function handleCancel() {
 		onCancel?.();
 		dialog.onOpenChange(false);
@@ -41,14 +38,14 @@ export function ConfirmDialog({
 					{...cancelProps}
 					className={cn("ghost relative col-span-1", cancelProps?.className)}
 				>
-					{cancelProps?.children ?? tCommon("cancel")}
+					{cancelProps?.children ?? "Cancel"}
 				</button>
 				<button
 					onClick={handleConfirm}
 					{...confirmProps}
 					className={cn("relative col-span-2", confirmProps?.className)}
 				>
-					{confirmProps?.children ?? tCommon("confirm")}
+					{confirmProps?.children ?? "Confirm"}
 				</button>
 			</div>
 		</Dialog>

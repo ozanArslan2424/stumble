@@ -2,7 +2,6 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ModalState } from "@/hooks/use-modal";
-import { useLanguage } from "@/modules/language/use-language";
 import type { ReactNode, ComponentProps } from "react";
 
 const Root = DialogPrimitive.Root;
@@ -41,7 +40,7 @@ export function Dialog({
 	autoFocus = false,
 	ref,
 }: DialogProps) {
-	const { t: tCommon } = useLanguage("common");
+	const closeText = "Close";
 
 	return (
 		<Root data-slot="dialog" open={open} onOpenChange={onOpenChange}>
@@ -101,7 +100,7 @@ export function Dialog({
 								)}
 							>
 								{closeButtonProps?.children ? closeButtonProps.children : <XIcon />}
-								<span className="sr-only">{tCommon("close")}</span>
+								<span className="sr-only">{closeText}</span>
 							</button>
 						</Close>
 					)}
