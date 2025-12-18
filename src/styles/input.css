@@ -1,0 +1,50 @@
+@import "./theme.css";
+
+@layer base {
+	input:not(.unset),
+	textarea:not(.unset),
+	select:not(.unset),
+	.input-like {
+		@apply placeholder:text-foreground/50 relative min-h-10 w-full rounded-lg transition-colors outline-none disabled:opacity-70;
+
+		&.ghost {
+			@apply text-foreground text-lg font-bold ring-2 ring-transparent sm:text-xl;
+		}
+
+		&:not(.ghost) {
+			@apply hover:border-primary bg-background border-border/70 focus-visible:ring-ring border px-3 py-2 text-sm shadow-xs ring-2 ring-transparent;
+		}
+
+		&[type="color"] {
+			@apply m-0 min-h-0 appearance-none p-0 [&::-moz-color-swatch]:border-none [&::-webkit-color-swatch]:border-none [&::-webkit-color-swatch-wrapper]:p-0;
+		}
+	}
+
+	label:not(.unset) {
+		@apply text-foreground/70 text-sm font-semibold;
+
+		&.sublabel {
+			@apply text-xs;
+		}
+
+		&.error {
+			@apply text-rose-500;
+		}
+	}
+
+	select:not(.unset) {
+		@apply appearance-none;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>');
+		background-repeat: no-repeat;
+		background-position: right calc(var(--spacing) * 3) center;
+	}
+
+	.dark {
+		select:not(.unset) {
+			@apply appearance-none;
+			background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>');
+			background-repeat: no-repeat;
+			background-position: right calc(var(--spacing) * 3) center;
+		}
+	}
+}
