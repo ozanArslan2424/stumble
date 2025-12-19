@@ -2,7 +2,14 @@ import { Help } from "@/lib/help.namespace";
 import { repeat } from "@/lib/utils";
 import { useAppContext } from "@/modules/context/app.context";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useReducer, type ComponentProps } from "react";
+import {
+	createContext,
+	use,
+	useEffect,
+	useReducer,
+	type ComponentProps,
+	type PropsWithChildren,
+} from "react";
 
 type State = {
 	teamCount: number;
@@ -66,9 +73,7 @@ const reducer = (state: State, action: Action): State => {
 	}
 };
 
-export type SettingsReducer = ReturnType<typeof useSettingsReducer>;
-
-export function useSettingsReducer() {
+function useSettingsHook() {
 	const { collection } = useAppContext();
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const collectionsQuery = useQuery(collection.list());
@@ -154,4 +159,17 @@ export function useSettingsReducer() {
 		collectionOptions,
 		dispatch,
 	};
+}
+
+const SettingsContext = createContext<ReturnType<typeof useSettingsHook> | null>(null);
+
+export function useSettingsContext() {
+	const context = use(SettingsContext);
+	if (!context) throw new Error("useSettingsContext missing provider");
+	return context;
+}
+
+export function SettingsContextProvider({ children }: PropsWithChildren) {
+	const value = useSettingsHook();
+	return <SettingsContext value={value}>{children}</SettingsContext>;
 }

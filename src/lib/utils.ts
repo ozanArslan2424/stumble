@@ -1,3 +1,4 @@
+import type { Help } from "@/lib/help.namespace";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -12,7 +13,12 @@ export function isObjectWith<T extends Record<string, unknown>>(
 	return !!item && typeof item === "object" && key in item;
 }
 
-export function repeat(length: number = 4) {
+export function repeat(length: number): number[];
+export function repeat<T extends Help.AnyPrimitive>(length: number, content?: T): T[];
+export function repeat<T extends Help.AnyPrimitive>(length: number = 4, content?: T) {
+	if (content) {
+		return Array.from({ length }).fill(content) as T[];
+	}
 	return Array.from({ length }, (_, index) => index);
 }
 

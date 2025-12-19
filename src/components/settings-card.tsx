@@ -3,11 +3,12 @@ import { useModal } from "@/hooks/use-modal";
 import { Help } from "@/lib/help.namespace";
 import { repeat } from "@/lib/utils";
 import { useAppContext } from "@/modules/context/app.context";
-import type { SettingsReducer } from "@/modules/settings/use-settings-reducer";
+import { useSettingsContext } from "@/modules/context/settings.context";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 
-export function SettingsCard({ settings }: { settings: SettingsReducer }) {
+export function SettingsCard() {
+	const settings = useSettingsContext();
 	const { collection } = useAppContext();
 	const confirmModal = useModal();
 	const activeQuery = useQuery(collection.getActive());

@@ -2,18 +2,18 @@ import { TXT } from "@/lib/txt.namespace";
 import { repeat } from "@/lib/utils";
 import type { CardData } from "@/modules/card/card.schema";
 import { useAppContext } from "@/modules/context/app.context";
-import type { SettingsReducer } from "@/modules/settings/use-settings-reducer";
+import { useSettingsContext } from "@/modules/context/settings.context";
 import { useSuspenseQuery, useMutation } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { toast } from "sonner";
 
 type CardFormProps = {
-	settings: SettingsReducer;
 	card: CardData | null;
 	onReset?: () => void;
 };
 
-export function CardForm({ settings, card, onReset }: CardFormProps) {
+export function CardForm({ card, onReset }: CardFormProps) {
+	const settings = useSettingsContext();
 	const { card: cardMod, collection } = useAppContext();
 	const collectionQuery = useSuspenseQuery(collection.getActive());
 	const collectionId = collectionQuery.data.id;
